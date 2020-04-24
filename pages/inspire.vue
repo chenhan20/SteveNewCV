@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex class="text-center">
       <img
-        src="/steveImage.png"
+        src="/steveNewImage.png"
         alt="Vuetify.js"
         class="mb-5"
       >
