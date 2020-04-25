@@ -19,4 +19,10 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+部屬到heroku要在setting --> Config Vars 新增以下參數
+```
+HOST = 0.0.0.0
+NODE_ENV = production
+NPM_CONFIG_PRODUCTION = false
+```
