@@ -65,12 +65,12 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'TestApi',
-          to: '/testApi'
+          title: 'exerciseGrid',
+          to: '/exerciseGrid'
         }
       ],
       miniVariant: false,
-      right: false,
+      right: true,
       rightDrawer: false,
       title: 'SteveChuang'
     }

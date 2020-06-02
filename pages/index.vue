@@ -12,15 +12,17 @@
       <div class="text-center">
         <img
           src="/steveNewImage.png"
-          alt="Vuetify.js"
-          class="mb-5"
         >
       </div>
         <blockquote class="blockquote">
-          &#8220;First, solve the problem. Then, write the code.&#8221;
           <footer>
+          <div>Make one</div>
+          <div>problem solver</div>
+          <div>creater</div>
+          <div>innovator</div>
+          <div>not a programmer</div>
             <small>
-              <em>&mdash;John Johnson</em>
+              <em>&mdash;Joma Tech</em>
             </small>
           </footer>
       </blockquote>
