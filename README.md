@@ -26,3 +26,7 @@ HOST = 0.0.0.0
 NODE_ENV = production
 NPM_CONFIG_PRODUCTION = false
 ```
+
+## 參考網站
+* [vuetify](https://vuetifyjs.com/zh-Hans/getting-started/quick-start/)
+* [grid Example](https://gridbyexample.com/examples/)
