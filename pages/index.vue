@@ -7,12 +7,13 @@
     <v-flex
       xs12
       sm8
-      md6
+      md8
     >
       <div class="text-center">
         <img
           src="/steveNewImage.png"
         >
+        <v-divider></v-divider>
       </div>
         <blockquote class="blockquote">
           <footer>
