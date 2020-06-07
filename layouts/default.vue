@@ -4,8 +4,10 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
+      src="/background_01.jpg"
       fixed
       app
+      dark=""
     >
       <v-list>
         <v-list-item
@@ -40,7 +42,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>SteveChuang &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -55,13 +57,13 @@ export default {
       items: [
         {
           icon: 'mdi-account',
-          title: 'SteveChuangCV',
+          title: 'SteveChuang',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'About',
-          to: '/about'
+          icon: 'mdi-tooltip-image',
+          title: 'Travel',
+          to: '/travel'
         },
         {
           icon: 'mdi-chart-bubble',

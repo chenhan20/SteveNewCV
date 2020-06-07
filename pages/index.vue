@@ -1,26 +1,32 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm6 md6>
-      <div class="text-center">
-        <img src="/steveNewImage.png" />
-        <v-divider></v-divider>
-      </div>
-      <blockquote class="blockquote">
-        <footer>
-          <div>Make one</div>
-          <div>problem solver</div>
-          <div>creater</div>
-          <div>innovator</div>
-          <div>not a programmer</div>
-          <small>
-            <em>&mdash;Joma Tech</em>
-          </small>
-        </footer>
-      </blockquote>
-      <v-card></v-card>
-    </v-flex>
-  </v-layout>
+  <v-row class="teal lighten-5">
+    <v-col offset-xl="3" xl="3" xs="12">
+      <v-img src="/steveNewImage.png" width="300"></v-img>
+    </v-col>
+    <v-col xl="6" xs="12">
+      <v-row>
+        <v-col class="harderName">SteveChuang</v-col>
+      </v-row>
+      <v-row>
+        <v-col class="headerPosition">FULL Stack WEB designer</v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
+
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+
+.harderName {
+  font-family: "Caveat", cursive;
+  font-size: 2.5em;
+  padding: 5%;
+}
+.headerPosition {
+  font-family: "Caveat", cursive;
+  font-size: 2em;
+}
+</style>
 
 <script>
 import Logo from "~/components/Logo.vue";
