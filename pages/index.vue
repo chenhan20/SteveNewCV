@@ -15,7 +15,6 @@
 </template>
 
 <style lang="scss" scoped>
-// @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
 
 .harderName {
   font-family: "Caveat", cursive;

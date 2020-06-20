@@ -66,6 +66,11 @@ export default {
           to: '/travel'
         },
         {
+          icon: 'mdi-format-list-checks',
+          title: 'ToDoList',
+          to: '/toDoList'
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'exerciseGrid',
           to: '/exerciseGrid'
