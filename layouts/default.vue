@@ -71,6 +71,11 @@ export default {
           to: '/toDoList'
         },
         {
+          icon: 'mdi-dice-1',
+          title: 'lotto',
+          to: '/lotto'
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'exerciseGrid',
           to: '/exerciseGrid'
