@@ -74,6 +74,4 @@ function getLottoNumberList(setting) {
 .lottoRow span {
   margin: 10px;
 }
-.lottoNumber {
-}
 </style>

@@ -19,6 +19,9 @@ $ npm run start
 $ npm run generate
 ```
 
+### 樂透功能
+
+
 
 部屬到heroku要在setting --> Config Vars 新增以下參數
 ```
