@@ -1,28 +1,44 @@
 <template>
   <v-row class="lottoRow">
     <v-col cols="12">
-      <v-row justify="space-around">
-        <h3>Lotto Produce</h3>
-      </v-row>
-      <v-row justify="space-around">
-        <v-sheet :elevation="elevation" :color="color" :tile="tile">
-          <template v-for="(lottoNumber,index) in generalList">
-            <v-chip :ripple="false" :key="index">{{ lottoNumber }}</v-chip>
-          </template>
-          <template v-for="(lottoNumber,index) in specialList">
-            <v-chip color="warning" :ripple="false" :key="index">{{ lottoNumber }}</v-chip>
-          </template>
-        </v-sheet>
-      </v-row>
+      <v-row justify="space-around"></v-row>
     </v-col>
-    <v-col cols="12">
-      <v-row justify="space-around">
-        <v-btn @click="getLottoNumber">
-          Start
-          <v-icon right>mdi-dice-6</v-icon>
-        </v-btn>
-      </v-row>
-    </v-col>
+    <v-card class="mx-auto" color="#26c6da" dark max-width="600">
+      <v-card-title>
+        <v-icon large left>mdi-emoticon-poop</v-icon>
+        <span class="title font-weight-light">Lotto</span>
+      </v-card-title>
+      <v-card-text class="headline font-weight-bold">
+        <template v-for="(lottoNumber,index) in generalList">
+          <v-chip :ripple="false" :key="index">{{ lottoNumber }}</v-chip>
+        </template>
+        <template v-for="(lottoNumber,index) in specialList">
+          <v-chip color="warning" :ripple="false" :key="index">{{ lottoNumber }}</v-chip>
+        </template>
+      </v-card-text>
+      <v-card-actions>
+        <v-list-item class="grow">
+          <v-list-item-avatar color="grey darken-3">
+            <v-img class="elevation-6" src="/coffinDance.jpg"></v-img>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Steve Chuang</v-list-item-title>
+          </v-list-item-content>
+          <v-btn @click="getLottoNumber">
+            Start
+            <v-icon right>mdi-dice-6</v-icon>
+          </v-btn>
+        </v-list-item>
+      </v-card-actions>
+    </v-card>
+    <v-card class="mx-auto" color="#26c6da" dark max-width="600">
+      <v-card-title>
+        <v-icon large left>mdi-settings-box</v-icon>
+        <span class="title font-weight-light">Lotto Setting</span>
+      </v-card-title>
+      <v-card-text class="headline font-weight-bold"></v-card-text>
+      <v-card-actions></v-card-actions>
+    </v-card>
   </v-row>
 </template>
 
@@ -50,8 +66,8 @@ export default {
       max: 8,
       lottoNum: 1
     },
-    generalList: [],
-    specialList: []
+    generalList: [0, 0, 0, 0, 0, 0],
+    specialList: [0]
   }),
   methods: {
     getLottoNumber: function(event) {
@@ -71,7 +87,10 @@ function getLottoNumberList(setting) {
 </script>
 
 <style lang="scss" scoped>
-.lottoRow span {
-  margin: 10px;
+body {
+  font-family: "Lobster", cursive;
+  .lottoRow span {
+    margin: 10px;
+  }
 }
 </style>
