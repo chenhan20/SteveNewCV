@@ -88,7 +88,7 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: ""
+          content: "樂透號碼產生威力彩券SteveChuang"
         }
       ]
     },
