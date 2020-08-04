@@ -3,7 +3,7 @@
     <v-col cols="12">
       <v-row justify="space-around"></v-row>
     </v-col>
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="6">
       <v-card class="mx-auto" color="#26c6da" dark max-width="600">
         <v-card-title>
           <v-icon large left>mdi-emoticon-poop</v-icon>
@@ -33,7 +33,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col cols="12" md="4">
+    <v-col cols="12" md="3">
       <v-card class="mx-auto" color="brown darken-1" dark max-width="600">
         <v-card-title>
           <v-icon large left>mdi-emoticon-tongue</v-icon>
