@@ -34,12 +34,45 @@
       </v-card>
     </v-col>
     <v-col cols="12" md="4">
-      <v-card class="mx-auto" color="#26c6da" dark max-width="600">
+      <v-card class="mx-auto" color="brown darken-1" dark max-width="600">
         <v-card-title>
-          <v-icon large left>mdi-settings-box</v-icon>
+          <v-icon large left>mdi-emoticon-tongue</v-icon>
           <span class="title font-weight-light">Lotto Setting</span>
         </v-card-title>
-        <v-card-text class="headline font-weight-bold"></v-card-text>
+        <v-card-text class="headline font-weight-bold">
+          <v-row justify="center">
+            <v-col cols="12" md="8">
+              <v-select
+                :items="lottoSpecies"
+                item-text="friendlyName"
+                label="choice lotto Species"
+                outlined
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="general.min"
+                label="起始號碼"
+              ></v-text-field>
+              <v-text-field
+                v-model="special.min"
+                label="起始號碼"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="general.max"
+                label="終止號碼"
+              ></v-text-field>
+              <v-text-field
+                v-model="special.max"
+                label="終止號碼"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
         <v-card-actions></v-card-actions>
       </v-card>
     </v-col>
@@ -60,30 +93,28 @@ export default {
       ]
     },
     elevation: 4,
-    lottoSpecies:{
-      "powerLotto" : {
+    lottoSpecies:[{
         friendlyName : "威力彩",
         general: {
           min: 1,
           max: 38,
-          lottoNum: 6
+          lottoQuantity: 6
         },
         special: {
           min: 1,
           max: 8,
-          lottoNum: 1
+          lottoQuantity: 1
         },
-      }
-    },
+    }],
     general: {
       min: 1,
       max: 38,
-      lottoNum: 6
+      lottoQuantity: 6
     },
     special: {
       min: 1,
       max: 8,
-      lottoNum: 1
+      lottoQuantity: 1
     },
     generalList: [0, 0, 0, 0, 0, 0],
     specialList: [0]
@@ -98,7 +129,7 @@ export default {
 
 function getLottoNumberList(setting) {
   let origin = new Set();
-  while (origin.size < setting.lottoNum) {
+  while (origin.size < setting.lottoQuantity) {
     origin.add(Math.floor(Math.random() * setting.max) + setting.min);
   }
   return Array.from(new Set(origin));
