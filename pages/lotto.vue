@@ -33,7 +33,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col cols="12" md="3">
+    <v-col cols="12" md="4">
       <v-card class="mx-auto" color="brown darken-1" dark max-width="600">
         <v-card-title>
           <v-icon large left>mdi-emoticon-tongue</v-icon>

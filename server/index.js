@@ -20,6 +20,11 @@ async function start () {
     await builder.build()
   }
 
+  // respond with "hello world" when a GET request is made to the homepage
+  app.get('/stock/getStockNumber', function (req, res) {
+    res.send('Hello from A!');
+  });
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

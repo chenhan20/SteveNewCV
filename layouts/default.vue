@@ -77,6 +77,11 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
+          title: 'stock',
+          to: '/stock'
+        },
+        {
+          icon: 'mdi-chart-bubble',
           title: 'exerciseGrid',
           to: '/exerciseGrid'
         }
