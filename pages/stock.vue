@@ -1,14 +1,14 @@
 <template>
-    
+    <h1>{{ head.title }}</h1>
 </template>
 
 <script>
 import {createStore} from 'vuex'
 
 export default {
-  data: (store) => ({
+  data: () => ({
     head: {
-      title: "Stock",
+      title: "STOCK",
     }
   }),
     created: function () {
