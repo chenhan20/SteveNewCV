@@ -2,9 +2,12 @@
   <!-- <h1>{{ head.title }}</h1> -->
   <v-container>
     <v-row>
-      <v-col cols="12" md="4" v-for="(stock, i) in stockList" :key="i">
-        {{ stock.name }} 
-        {{ stock.price }} 
+      <v-col cols="12" md="2" v-for="(stock, i) in stockList" :key="i">
+        <v-card height="150" tile>
+          <v-card-title>{{ stock.name }}</v-card-title>
+          <v-divider light></v-divider>
+          <v-card-text class="headline font-weight-bold red--text">{{ stock.price }} (0.00%)</v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -36,7 +39,7 @@ const stockData = {
     { name: "ORCL", price: 61.11 },
     { name: "WORK", price: 32.57 },
     { name: "PTON", price: 131.74 },
-    { name: "SNE", price: 74.36 },
+    { name: "SNE", price: 74.36  },
     { name: "WMT", price: 145.7 },
     { name: "CRM", price: 268.74 },
     { name: "LMT", price: 389.43 },
