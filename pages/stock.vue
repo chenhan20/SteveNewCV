@@ -15,6 +15,7 @@
 
 <script>
 import { createStore } from "vuex";
+import axios from 'axios'
 
 export default {
   data: () => ({
@@ -31,7 +32,21 @@ export default {
   methods: {
     getStock: function (event) {},
   },
+   mounted () {
+    axios
+      .post('https://fcsapi.com/api-v2/stock/latest', getStockData)
+      .then(response => (console.log(response)))
+  }
 };
+
+const access_key='';
+
+const getStockData = {
+  symbol:[
+    'NKE','AAPL'
+  ],
+  access_key:'',
+}
 
 const stockData = {
   stockList: [
