@@ -2,24 +2,40 @@
   <!-- <h1>{{ head.title }}</h1> -->
   <v-container>
     <v-row>
-      <v-col cols="12" md="2" v-for="(stock, i) in stockData" :key="i">
-        <v-card height="100" class="ma-3" tile>
-          <v-card-title>{{ stock.symbol }}</v-card-title>
+      <v-col cols="12" md="3" v-for="(stock, i) in stockData" :key="i">
+        <v-card height="120" class="ma-3" tile>
+          <v-card-title class="headline font-weight-black">{{
+            stock.symbol
+          }}</v-card-title>
           <v-divider light></v-divider>
           <v-alert
             :value="true"
-            :type="`${stock.chg.indexOf('+') != -1 ? 'green' : 'red'} `"
-            elevation="3"
-            class="ma-0"
+            dark
+            elevation="5"
+            class="ma-0 font-weight-black"
           >
-           {{ stock.price }} 
-            <v-chip
-              :color="`lighten-4`"
-              class="ml-6 right"
-              label
-            >
-            {{stock.chg}}
-            </v-chip>
+            <v-layout>
+              <v-flex xs8>
+                <v-chip class="ml-6 headline" label large>
+                  {{ stock.price }}
+                </v-chip>
+              </v-flex>
+              <v-flex>
+                <v-chip
+                  :color="`${stock.chg.indexOf('+') != -1 ? 'green' : 'red'} `"
+                  v-on:click="showPercent = !showPercent"
+                  class="ml-6 headline"
+                  label
+                  large
+                >
+                  {{
+                    showPercent
+                      ? converter(stock.chg_percent)
+                      : converter(stock.chg)
+                  }}
+                </v-chip>
+              </v-flex>
+            </v-layout>
           </v-alert>
         </v-card>
       </v-col>
@@ -27,9 +43,11 @@
   </v-container>
 </template>
 
+
+
 <script>
 import { createStore } from "vuex";
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   data: () => ({
@@ -37,18 +55,26 @@ export default {
       title: "STOCK",
     },
     stockData: [],
+    defaultSymbolList:defaultSymbolList,
+    showPercent: true
   }),
   created: function () {
     // `this` points to the vm instance
-    // this.stockList = stockData.stockList;
   },
   methods: {
+    converter : (stockchangeNum) =>{
+      const converterNum = stockchangeNum;
+      if(stockchangeNum.indexOf('-') == -1 && stockchangeNum.indexOf('+') == -1){
+        stockchangeNum= '+' + stockchangeNum;
+      }
+      return stockchangeNum;
+    }
   },
   //不知道為啥小post一直call不過去  先暫時用get
    mounted () {
     // this.stockData = testData.response.filter(stock => stock.country == 'united-states');
     axios
-      .get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${symbolList.join()}`)
+      .get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${this.defaultSymbolList.join()}`)
       .then(response => {
         console.log(response.data)
         if(response.data.msg == "Successfully"){
@@ -62,7 +88,7 @@ export default {
 
 const access_key='EW4ByaDKhCt5hVSjgIVtyc0C1NJTleIGpAnwIlHKLWyc2nFATj';
 
-const symbolList = [ "NKE", "ORCL", "WORK", "PTON", "SNE",  "WMT",  "CRM",  "LMT",  "VFC",  "ASML", 
+const defaultSymbolList = [ "NKE", "ORCL", "WORK", "PTON", "SNE",  "WMT",  "CRM",  "LMT",  "VFC",  "ASML", 
   "GPRO", "DIS",  "COST", "AMZN", "FB",  "ZM",  "SPOT", "NVDA", "INTC", "AMD",
   "BRK-B", "GOOG", "AAPL", "UBER","TSM", "UMC", "MU", "TSLA","NFLX"];
 
