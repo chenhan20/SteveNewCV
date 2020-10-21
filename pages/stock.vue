@@ -1,6 +1,45 @@
 <template>
   <v-container>
     <v-row>
+      <v-flex xs12 sm6 d-flex offset-sm-3>
+        <v-select
+          v-model="selectSymbolList"
+          :items="defaultSymbolList"
+          label="Watch List"
+          multiple
+          attach
+          chips
+          outline
+        ></v-select>
+        <!-- <v-combobox
+          v-model="selectSymbolList"
+          :items="defaultSymbolList"
+          :search-input.sync="search"
+          hide-selected
+          label="Watch List"
+          multiple
+          persistent-hint
+          small-chips
+        >
+          <template v-slot:no-data>
+            <v-list-tile>
+              <v-list-tile-content>
+                <v-list-tile-title>
+                  No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                </v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-combobox> -->
+      </v-flex>
+      <v-flex xs6 sm6 d-flex offset-sm-3>
+        <v-btn color="success" large>
+          reload
+          <v-icon right>mdi-reload</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-row>
+    <v-row>
       <v-col cols="12" xl="2" md="3" v-for="(stock, i) in stockData" :key="i">
         <v-card class="ma-4" tile>
           <v-card-title class="headline font-weight-black">{{
@@ -8,9 +47,8 @@
           }}</v-card-title>
           <v-divider light></v-divider>
           <v-alert
-            :value="true"
             dark
-            elevation="5"
+            elevation="15"
             class="ma-0 font-weight-black"
           >
             <v-layout>
@@ -54,14 +92,16 @@ export default {
       title: "STOCK",
     },
     stockData: [],
-    defaultSymbolList:defaultSymbolList,
-    showPercent: true
+    selectSymbolList : defaultSymbolList,
+    defaultSymbolList : defaultSymbolList,
+    showPercent: true,
+    useTestData: false
   }),
   created: function () {
     // `this` points to the vm instance
   },
   methods: {
-    converter : (stockchangeNum) =>{
+    converter : function(stockchangeNum) {
       const parseNum = parseInt(stockchangeNum);
       let converterNum = stockchangeNum;
       if(parseNum>0){
@@ -69,7 +109,7 @@ export default {
       }
       return converterNum;
     },
-    getStockColor : (chg) =>{
+    getStockColor :function (chg){
       let color = "";
       if(chg.indexOf("+") != -1){
         color='green';
@@ -79,21 +119,27 @@ export default {
         color = '#555555';
       }
       return color;
+    },
+    reloadStockData : function(symbolList) {
+       axios
+         .get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${symbolList.join()}`)
+         .then(response => {
+           console.log(response.data)
+           if(response.data.msg == "Successfully"){
+               //因為會回傳墨西哥的資料  所以需要先filter
+               this.stockData = response.data.response.filter(stock => stock.country == 'united-states');
+               console.log(this.stockData);
+           }   
+       });
     }
   },
   //不知道為啥小post一直call不過去  先暫時用get
    mounted () {
-    // this.stockData = testData.response.filter(stock => stock.country == 'united-states');
-    axios
-      .get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${this.defaultSymbolList.join()}`)
-      .then(response => {
-        console.log(response.data)
-        if(response.data.msg == "Successfully"){
-            //因為會回傳墨西哥的資料  所以需要先filter
-            this.stockData = response.data.response.filter(stock => stock.country == 'united-states');
-            console.log(this.stockData);
-        }   
-    });
+     if(this.useTestData){
+       this.stockData = testData.response.filter(stock => stock.country == 'united-states');
+     }else{
+       this.reloadStockData(this.selectSymbolList);
+     }
   }
 };
 
