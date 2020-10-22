@@ -33,11 +33,11 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <v-footer
       :fixed="fixed"
       app
@@ -76,7 +76,7 @@ export default {
           to: '/lotto'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-chart-line',
           title: 'stock',
           to: '/stock'
         },

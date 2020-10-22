@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <h3 class="display-3 text-center">My StockWatchlist</h3>
     <v-row>
       <v-flex xs12 sm6 d-flex offset-sm-3>
         <v-select
@@ -32,7 +33,7 @@
           </template>
         </v-combobox> -->
       </v-flex>
-      <v-flex xs6 sm6 d-flex offset-sm-3>
+      <v-flex class="my-3" xs6 sm6 d-flex offset-sm-3>
         <v-btn color="success" large>
           reload
           <v-icon right>mdi-reload</v-icon>
@@ -40,8 +41,8 @@
       </v-flex>
     </v-row>
     <v-row>
-      <v-col cols="12" xl="2" md="3" v-for="(stock, i) in stockData" :key="i">
-        <v-card class="ma-4" tile>
+      <v-col class="my-0 py-0" cols="12" xl="2" md="3" v-for="(stock, i) in stockData" :key="i">
+        <v-card class="ma-1" tile>
           <v-card-title class="headline font-weight-black">{{
             stock.symbol
           }}</v-card-title>
@@ -49,15 +50,15 @@
           <v-alert
             dark
             elevation="15"
-            class="ma-0 font-weight-black"
+            class="my-1 py-1 font-weight-black"
           >
             <v-layout>
-              <v-flex>
+              <v-flex class="text-center">
                 <v-chip class="ma-1 headline" label large>
                   {{ stock.price }}
                 </v-chip>
               </v-flex>
-              <v-flex>
+              <v-flex class="text-center">
                 <v-chip
                   :color="`${getStockColor(stock.chg)} `"
                   v-on:click="showPercent = !showPercent"
@@ -95,16 +96,16 @@ export default {
     selectSymbolList : defaultSymbolList,
     defaultSymbolList : defaultSymbolList,
     showPercent: true,
-    useTestData: false
+    useTestData: true
   }),
   created: function () {
     // `this` points to the vm instance
   },
   methods: {
     converter : function(stockchangeNum) {
-      const parseNum = parseInt(stockchangeNum);
+      const parseNum = parseFloat(stockchangeNum);
       let converterNum = stockchangeNum;
-      if(parseNum>0){
+      if(parseNum > 0 && stockchangeNum.indexOf("+") == -1){
         converterNum= '+' + stockchangeNum;
       }
       return converterNum;
