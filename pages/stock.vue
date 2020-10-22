@@ -33,7 +33,11 @@
           </template>
         </v-combobox> -->
       </v-flex>
-      <v-flex class="my-3" xs6 sm6 d-flex offset-sm-3>
+      <v-flex class="my-3">
+        {{useTestData}}
+        <v-switch v-model="useTestData"></v-switch>
+      </v-flex>
+      <v-flex class="my-3" xs6 sm6 d-flex>
         <v-btn color="success" large>
           reload
           <v-icon right>mdi-reload</v-icon>
@@ -96,7 +100,7 @@ export default {
     selectSymbolList : defaultSymbolList,
     defaultSymbolList : defaultSymbolList,
     showPercent: true,
-    useTestData: false
+    useTestData: true
   }),
   created: function () {
     // `this` points to the vm instance
