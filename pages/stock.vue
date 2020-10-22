@@ -96,7 +96,7 @@ export default {
     selectSymbolList : defaultSymbolList,
     defaultSymbolList : defaultSymbolList,
     showPercent: true,
-    useTestData: true
+    useTestData: false
   }),
   created: function () {
     // `this` points to the vm instance
