@@ -72,13 +72,18 @@ export default {
         },
         {
           icon: 'mdi-dice-1',
-          title: 'lotto',
+          title: 'Lotto',
           to: '/lotto'
         },
         {
           icon: 'mdi-chart-line',
-          title: 'stock',
+          title: 'Stock',
           to: '/stock'
+        },
+        {
+          icon: 'mdi-people',
+          title: 'Celebrity',
+          to: '/celebrity'
         },
         {
           icon: 'mdi-chart-bubble',
