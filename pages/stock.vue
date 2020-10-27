@@ -41,7 +41,7 @@
       </v-flex>
     </v-row>
     <v-row>
-      <v-col class="ma-0 pa-0" cols="12" xl="2" md="4" v-for="(stock, i) in stockData" :key="i">
+      <v-col class="ma-0 pa-0" cols="12" xl="3" md="4" v-for="(stock, i) in stockData" :key="i">
         <v-card class="" >
           <!-- <v-card-title class="headline font-weight-black">{{
             stock.symbol
@@ -51,17 +51,19 @@
               dark
               class="ma-1 pa-0 font-weight-black"
             >
-            <v-row class="text-right ma-2">
-              <p class="headline font-weight-black ma-3">{{
-                stock.symbol
-              }}
-              </p>
-              <v-flex class="text-center">
+            <v-row class="pa-0 ma-0">
+              <v-col class="text-left ma-0 pa-4" cols='4' sm='4' xs='4'>
+                <p class="headline font-weight-black">{{
+                  stock.symbol
+                }}
+                </p>
+              </v-col>
+              <v-col class="text-center pa-0" cols='4' sm='4' xs='4'>
                 <v-chip class="ma-1 headline" label large>
                   {{ stock.price }}
                 </v-chip>
-              </v-flex>
-              <v-flex class="text-center">
+              </v-col>
+              <v-col class="text-center pa-0" cols='4' sm='4' xs='4'>
                 <v-chip
                   :color="`${getStockColor(stock.chg)} `"
                   v-on:click="showPercent = !showPercent"
@@ -75,7 +77,7 @@
                       : converter(stock.chg)
                   }}
                 </v-chip>
-              </v-flex>
+              </v-col>
             </v-row>
             </v-alert>
         </v-card>
