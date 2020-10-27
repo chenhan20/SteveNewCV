@@ -1,38 +1,40 @@
 <template>
-  <v-row>
-    <v-col v-for="(location, i) in locations" :key="i">
-      <v-card class :max-width="location.width">
-        <v-img
-          class="white--text align-end"
-          :height="location.imageHeight"
-          :src="location.src"
-        >
-        <!-- <v-card-title v-text="location.title"></v-card-title> -->
-        </v-img>
-        <v-list>
-          <v-card-title v-text="location.title"></v-card-title>
-          <!-- <v-card-title>{{ location.title }}</v-card-title> -->
-        </v-list>
-          <v-card-actions>
-             <v-spacer></v-spacer>
-            <v-btn
-                icon
-                @click="location.showDetail = !location.showDetail"
-              >
-                <v-icon>{{ location.showDetail ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-              </v-btn>
-          </v-card-actions>
-          <v-expand-transition>
-            <div v-show="location.showDetail">
-               <v-divider></v-divider>
-              <v-card-text>
-                {{ location.detailText }}
-              </v-card-text>
-            </div>
-          </v-expand-transition>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-row>
+      <v-col v-for="(location, i) in locations" :key="i">
+        <v-card class :max-width="location.width">
+          <v-img
+            class="white--text align-end"
+            :height="location.imageHeight"
+            :src="location.src"
+          >
+          <!-- <v-card-title v-text="location.title"></v-card-title> -->
+          </v-img>
+          <v-list>
+            <v-card-title v-text="location.title"></v-card-title>
+            <!-- <v-card-title>{{ location.title }}</v-card-title> -->
+          </v-list>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                  icon
+                  @click="location.showDetail = !location.showDetail"
+                >
+                  <v-icon>{{ location.showDetail ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                </v-btn>
+            </v-card-actions>
+            <v-expand-transition>
+              <div v-show="location.showDetail">
+                <v-divider></v-divider>
+                <v-card-text>
+                  {{ location.detailText }}
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

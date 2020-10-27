@@ -1,65 +1,61 @@
 <template>
   <v-container>
-    <h3 class="display-3 text-center">My StockWatchlist</h3>
+    <p class="text-sm-h3 text-h4 text-center">My Stockwatchlist</p>
     <v-row>
-      <v-flex xs9 sm6 d-flex>
+      <v-flex xs12 sm6 d-flex>
         <v-select
           v-model="selectSymbolList"
           :items="defaultSymbolList"
           label="Watch List"
           multiple
-          attach
           chips
-          outline
-        ></v-select>
-        <!-- <v-combobox
-          v-model="selectSymbolList"
-          :items="defaultSymbolList"
-          :search-input.sync="search"
-          hide-selected
-          label="Watch List"
-          multiple
-          persistent-hint
-          small-chips
         >
-          <template v-slot:no-data>
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+          <template v-slot:selection="{ item, index }">
+            <v-chip v-if="index <= 7">
+              <span>{{ item }}</span>
+            </v-chip>
+            <span
+              v-if="index === 7"
+              class="grey--text caption"
+            >(+{{ selectSymbolList.length - 7 }} others)</span>
           </template>
-        </v-combobox> -->
+        </v-select>
       </v-flex>
-      <v-flex xs3 sm6>
+      <v-flex xs12 sm6 class="pa-3">
         <v-row>
-          <v-btn class="ma-5" v-on:click="reloadStockData" color="success" fab>
-            <v-icon>mdi-reload</v-icon>
-          </v-btn>
-          <v-switch inset class="ma-5" color="success" v-model="useTestData">
-          </v-switch>
-        </v-row>
-        <v-row>
-          <h3 class="text-sm-h5 font-weight-black ma-5 text--disabled" v-if="useTestData">使用測試資料</h3>
-          <h3 class="text-sm-h5 ma-5 xs-ma-2 font-weight-black font-italic" v-else>使用API取得資料</h3>
+          <v-flex sm2 xs4>
+            <v-btn class="ma-5" @:click="reloadStockData" color="success" fab>
+              <v-icon>mdi-reload</v-icon>
+            </v-btn>
+          </v-flex>
+          <v-flex sm10 xs8>
+            <v-switch inset class="ma-5 pa-4"  color="pink lighten-1" v-model="useTestData">
+              <template v-slot:label>
+                <span class="text-sm-h5 font-weight-black pink--text">
+                  {{useTestData ? '使用測試資料': '使用API取得資料'}}
+                </span>
+              </template>
+            </v-switch>
+          </v-flex>
         </v-row>
       </v-flex>
     </v-row>
     <v-row>
-      <v-col class="my-0 py-0" cols="12" xl="2" md="3" v-for="(stock, i) in stockData" :key="i">
-        <v-card class="ma-1" tile>
-          <v-card-title class="headline font-weight-black">{{
+      <v-col class="ma-0 pa-0" cols="12" xl="2" md="4" v-for="(stock, i) in stockData" :key="i">
+        <v-card class="" >
+          <!-- <v-card-title class="headline font-weight-black">{{
             stock.symbol
-          }}</v-card-title>
-          <v-divider light></v-divider>
-          <v-alert
-            dark
-            elevation="15"
-            class="my-1 py-1 font-weight-black"
-          >
-            <v-layout>
+          }}
+          </v-card-title> -->
+            <v-alert
+              dark
+              class="ma-1 pa-0 font-weight-black"
+            >
+            <v-row class="text-right ma-2">
+              <p class="headline font-weight-black ma-3">{{
+                stock.symbol
+              }}
+              </p>
               <v-flex class="text-center">
                 <v-chip class="ma-1 headline" label large>
                   {{ stock.price }}
@@ -80,8 +76,8 @@
                   }}
                 </v-chip>
               </v-flex>
-            </v-layout>
-          </v-alert>
+            </v-row>
+            </v-alert>
         </v-card>
       </v-col>
     </v-row>
@@ -162,4 +158,7 @@ const testData = {"status":true,"code":200,"msg":"Successfully","response":[{"pr
 </script>
 
 <style lang="scss" scoped>
+.switch_label {
+   color: black
+}
 </style>

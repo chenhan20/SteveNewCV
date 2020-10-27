@@ -7,8 +7,18 @@
       src="/background_01.jpg"
       fixed
       app
-      dark=""
+      temporary
+      dark
     >
+      <v-img :aspect-ratio="16/9" src="/navImage.jpg">
+        <v-layout pa-2 column fill-height class="lightbox white--text">
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+            <div class="headline">Steve Chuang</div>
+            <div class="subtitle-1">a0911558945@gmail.com</div>
+          </v-flex>
+        </v-layout>
+      </v-img>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -34,7 +44,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-main>
@@ -57,7 +67,7 @@ export default {
       items: [
         {
           icon: 'mdi-account',
-          title: 'SteveChuang',
+          title: 'Introduction',
           to: '/'
         },
         {
@@ -66,9 +76,9 @@ export default {
           to: '/travel'
         },
         {
-          icon: 'mdi-format-list-checks',
-          title: 'ToDoList',
-          to: '/toDoList'
+          icon: 'mdi-chart-line',
+          title: 'Stock',
+          to: '/stock'
         },
         {
           icon: 'mdi-dice-1',
@@ -76,12 +86,12 @@ export default {
           to: '/lotto'
         },
         {
-          icon: 'mdi-chart-line',
-          title: 'Stock',
-          to: '/stock'
+          icon: 'mdi-format-list-checks',
+          title: 'ToDoList',
+          to: '/toDoList'
         },
         {
-          icon: 'mdi-people',
+          icon: 'mdi-account-group',
           title: 'Celebrity',
           to: '/celebrity'
         },
@@ -94,10 +104,10 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'SteveChuang'
+      title: 'SteveChuang',
     }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 </style>

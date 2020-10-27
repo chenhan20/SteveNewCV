@@ -31,7 +31,7 @@ $ npm run generate
 
 * 股票資訊 功能完成 可顯示lastdata
 
-* [fcsapi](https://fcsapi.com/)
+* [fcsapi抓取美股資訊](https://fcsapi.com/)
 
 ---
 
