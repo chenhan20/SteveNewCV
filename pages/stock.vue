@@ -1,60 +1,89 @@
 <template>
   <v-container>
-    <p class="text-sm-h3 text-h4 text-center">My Stockwatchlist</p>
-    <v-row>
-      <v-flex xs12 sm6 d-flex>
-        <v-select
-          v-model="selectSymbolList"
-          :items="defaultSymbolList"
-          label="Watch List"
-          multiple
-          chips
+    <p class="text-sm-h3 text-h4 text-center">Steve Stockwatchlist</p>
+    <v-card dark class="pa-5 my-5 grey darken-2"
+      elevation="2"
+      outlined
+      shaped>
+      <v-card-title>
+        <v-icon
+          left
         >
-          <template v-slot:selection="{ item, index }">
-            <v-chip v-if="index <= 7">
-              <span>{{ item }}</span>
-            </v-chip>
-            <span v-if="index === 7" class="grey--text caption"
-              >(+{{ selectSymbolList.length - 7 }} others)</span
-            >
-          </template>
-        </v-select>
-      </v-flex>
-      <v-flex xs12 sm6 class="pa-3">
+          mdi-wrench-outline
+        </v-icon>
+        <span class="title font-weight-light">Setting</span>
+      </v-card-title>
+      <v-card-actions>
         <v-row>
-          <v-flex sm2 xs4>
-            <v-btn class="ma-5" @click="reloadStockData" color="success" fab>
-              <v-icon>mdi-reload</v-icon>
-            </v-btn>
+          <v-flex xs12 sm5>
+            <v-select
+              v-model="selectSymbolList"
+              :items="defaultSymbolList"
+              label="Watch List"
+              multiple
+              chips
+            >
+              <template v-slot:selection="{ item, index }">
+                <v-chip v-if="index <= 4">
+                  <span>{{ item }}</span>
+                </v-chip>
+                <span v-if="index === 4" class="caption"
+                  >(+{{ selectSymbolList.length - 4 }} others)</span
+                >
+              </template>
+            </v-select>
           </v-flex>
-          <v-flex sm10 xs8>
+          <v-flex xs12 sm3 class="mx-6">
             <v-switch
               inset
-              class="ma-5 pa-4"
-              color="pink lighten-1"
+              class="ma-5"
+              color=""
               v-model="useTestData"
             >
               <template v-slot:label>
-                <span class="text-sm-h5 font-weight-black pink--text">
+                <span class="text-sm-h5 text-h5 font-weight-black">
                   {{ useTestData ? "使用測試資料" : "使用API取得資料" }}
                 </span>
               </template>
             </v-switch>
           </v-flex>
+          <v-flex xs12 sm3 class="text-right">
+            <v-btn class="my-4" @click="reloadStockData" fab>
+              <v-icon>mdi-reload</v-icon>
+            </v-btn>
+            <v-btn-toggle
+              center
+              mandatory
+              v-model="showTypeToggle"
+              borderless
+              class=""
+            >
+              <v-btn value="Table">
+                <span class="hidden--and-down">Table</span>
+                <v-icon right>
+                  mdi-format-align-left
+                </v-icon>
+              </v-btn>
+              <v-btn value="Block">
+                <span class="hidden--and-down">Block</span>
+                <v-icon right>
+                  mdi-table
+                </v-icon>
+              </v-btn>
+            </v-btn-toggle>
+          </v-flex>
         </v-row>
-      </v-flex>
-    </v-row>
+      </v-card-actions>
+    </v-card>
     <v-data-table
        :headers="tableHeaders"
-       :items="stockData">
-      <template v-slot:items="props">
-        <td>{{ props.symbol }}</td>
-        <td>{{ props.price }}</td>
-        <td>{{ converter(stock.chg) }}</td>
-        <td>{{ converter(stock.chg_percent) }}</td>
-      </template>
+       :items="stockData"
+       :items-per-page="15"
+       v-show="showTypeToggle=='Table'"
+       dark
+    >
     </v-data-table>
-    <v-row>
+    <v-row v-show="showTypeToggle=='Block'">
       <v-col
         class="ma-0 pa-0"
         cols="12"
@@ -64,7 +93,7 @@
         :key="i"
       >
         <v-card class="ma-1">
-          <v-alert dark class="ma-0 pa-3 font-weight-black">
+          <v-alert dark color="black" class="ma-0 pa-3 font-weight-black">
             <v-row class="pa-0 ma-0">
               <v-col class="" cols="4" sm="4" xs="4">
                   <v-chip
@@ -76,7 +105,7 @@
                 {{ stock.symbol }}
                 </v-chip>
               </v-col>
-              <v-col class="text-right" cols="8" sm="8">
+              <v-col class="text-right px-0" cols="8" sm="8">
                 <v-chip class="headline mx-0 pa-2" label large>
                   {{ stock.price }}
                 </v-chip>
@@ -118,27 +147,28 @@ export default {
     defaultSymbolList : defaultSymbolList,
     showPercent: true,
     useTestData: true,
+    showTypeToggle: 'Block',
     tableHeaders: [
           {
-            text: 'Symbol',
+            text: '股名',
             align: 'left',
             sortable: false,
             value: 'symbol'
           },
           {
-            text: 'Price',
+            text: '股價',
             align: 'left',
             sortable: false,
             value: 'price'
           },
           {
-            text: 'chg',
+            text: '漲跌',
             align: 'left',
             sortable: false,
             value: 'chg'
           },
           {
-            text: 'chg percent',
+            text: '漲跌幅(%)',
             align: 'left',
             sortable: false,
             value: 'chg_percent'
