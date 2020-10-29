@@ -1,7 +1,7 @@
 <template>
   <v-row class="teal lighten-5">
     <v-col offset-xl="3" xl="3" xs="12">
-      <v-img src="/steveNewImage.png" width="300"></v-img>
+      <v-img src="/steveNewImage_01.png" width="300"></v-img>
     </v-col>
     <v-col xl="6" xs="12">
       <v-row>
