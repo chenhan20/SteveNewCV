@@ -59,55 +59,59 @@
         </v-row>
       </v-card-actions>
     </v-card>
-    <v-data-table
-      :headers="tableHeaders"
-      :items="stockData"
-      :items-per-page="15"
-      v-show="showTypeToggle == 'Table'"
-      dark
-    >
-    <template>
-    </template>
-    </v-data-table>
-    <v-row v-show="showTypeToggle == 'Block'">
-      <v-col
-        class="ma-0 pa-0"
-        cols="12"
-        xl="3"
-        md="4"
-        v-for="(stock, i) in stockData"
-        :key="i"
+    <v-slide-x-reverse-transition hide-on-leave>
+      <v-data-table
+        :headers="tableHeaders"
+        :items="stockData"
+        :items-per-page="15"
+        v-show="showTypeToggle == 'Table'"
+        dark
       >
-        <v-card class="ma-1">
-          <v-alert dark color="black" class="ma-0 pa-3 font-weight-black">
-            <v-row class="pa-0 ma-0">
-              <v-col class="" cols="4" sm="4" xs="4">
-                <v-chip color="black" class="headline" label large>
-                  {{ stock.symbol }}
-                </v-chip>
-              </v-col>
-              <v-col class="text-right px-0" cols="8" sm="8">
-                <v-chip class="headline mx-0 pa-2" label large>
-                  {{ stock.price }}
-                </v-chip>
-                <v-chip
-                  :color="`${getStockColor(stock.chg)} `"
-                  v-on:click="showPercent = !showPercent"
-                  class="headline mx-0 pa-2"
-                  label
-                  large
-                >
-                  <v-icon>
-                    {{ getArrow(stock.chg) }}
-                  </v-icon>
-                  {{ converterChg(stock) }}
-                </v-chip>
-              </v-col>
-            </v-row>
-          </v-alert>
-        </v-card>
-      </v-col>
-    </v-row>
+        <template>
+        </template>
+      </v-data-table>
+    </v-slide-x-reverse-transition>
+    <v-slide-y-transition hide-on-leave>
+      <v-row v-show="showTypeToggle == 'Block'">
+        <v-col
+          class="ma-0 pa-0"
+          cols="12"
+          xl="3"
+          md="4"
+          v-for="(stock, i) in stockData"
+          :key="i"
+        >
+            <v-card hover class="ma-1" >
+              <v-alert dark color="black" class="ma-0 pa-3 font-weight-black">
+                <v-row class="pa-0 ma-0">
+                  <v-col class="" cols="4" sm="4" xs="4">
+                    <v-chip color="black" class="headline" label large>
+                      {{ stock.symbol }}
+                    </v-chip>
+                  </v-col>
+                  <v-col class="text-right px-0" cols="8" sm="8">
+                    <v-chip class="headline mx-0 pa-2" label large>
+                      {{ stock.price }}
+                    </v-chip>
+                    <v-chip
+                      :color="`${getStockColor(stock.chg)} `"
+                      v-on:click="showPercent = !showPercent"
+                      class="headline mx-0 pa-2"
+                      label
+                      large
+                    >
+                      <v-icon>
+                        {{ getArrow(stock.chg) }}
+                      </v-icon>
+                      {{ converterChg(stock) }}
+                    </v-chip>
+                  </v-col>
+                </v-row>
+              </v-alert>
+            </v-card>
+        </v-col>
+      </v-row>
+    </v-slide-y-transition>
   </v-container>
 </template>
 
@@ -127,7 +131,7 @@ export default {
     defaultSymbolList: defaultSymbolList,
     showPercent: true,
     useTestData: true,
-    showTypeToggle: "Table",
+    showTypeToggle: "Block",
     tableHeaders: [
       {
         text: "股名",
@@ -258,4 +262,17 @@ const testData = {"status":true,"code":200,"msg":"Successfully","response":[{"pr
 </script>
 
 <style lang="scss" scoped>
+.v-card--reveal {
+    align-items: center;
+    bottom: 0;
+    justify-content: center;
+    opacity: .5;
+    position: absolute;
+    width: 100%;
+}
+
+.v-application--wrap {
+    min-height: 100vh;
+    justify-content: center;
+}
 </style>
