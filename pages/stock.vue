@@ -27,10 +27,10 @@
             </v-select>
           </v-flex>
           <v-flex xs12 sm3 class="mx-6">
-            <v-switch inset class="ma-5" color="" v-model="useTestData">
+            <v-switch inset class="ma-5" color="" v-model="useRealData">
               <template v-slot:label>
                 <span class="text-sm-h5 text-h5 font-weight-black">
-                  {{ useTestData ? "使用測試資料" : "使用API取得資料" }}
+                  {{ useRealData ? "使用API取得資料" : "使用測試資料" }}
                 </span>
               </template>
             </v-switch>
@@ -67,8 +67,7 @@
         v-show="showTypeToggle == 'Table'"
         dark
       >
-        <template>
-        </template>
+        <template> </template>
       </v-data-table>
     </v-slide-x-reverse-transition>
     <v-slide-y-transition hide-on-leave>
@@ -81,7 +80,7 @@
           v-for="(stock, i) in stockData"
           :key="i"
         >
-          <v-card hover class="ma-1" >
+          <v-card hover class="ma-1">
             <v-alert dark color="#202020" class="ma-0 pa-3 font-weight-black">
               <v-row class="pa-0 ma-0">
                 <v-col class="" cols="4" sm="4" xs="4">
@@ -127,11 +126,10 @@ export default {
       title: "STOCK",
     },
     stockData: [],
-    access_key: '',
     selectSymbolList: [],
     defaultSymbolList: [],
     showPercent: true,
-    useTestData: true,
+    useRealData: false,
     showTypeToggle: "Block",
     tableHeaders: [
       {
@@ -185,28 +183,24 @@ export default {
     ],
   }),
   created: function () {
-    axios
-      .get(
-        `/stock/initStockData`
-      )
-      .then((response) => {
-        if(response.status===200){
-          this.access_key = response.data.access_key;
-          this.defaultSymbolList = response.data.symbolList;
-          this.selectSymbolList = response.data.symbolList;
-        }
-      });
+    axios.get(`/stock/initStockData`).then((response) => {
+      if (response.status === 200) {
+        this.defaultSymbolList = response.data.symbolList;
+        this.selectSymbolList = response.data.symbolList;
+        this.reloadStockData();
+      }
+    });
     // `this` points to the vm instance
   },
   methods: {
-    converterChg (stockData) {
+    converterChg(stockData) {
       let converterNum = this.showPercent
         ? stockData.chg_percent
         : stockData.chg;
       converterNum = converterNum.replaceAll("-", "").replaceAll("+", "");
       return converterNum;
     },
-    getArrow (chg) {
+    getArrow(chg) {
       let mdiName = "";
       if (chg.indexOf("+") != -1) {
         mdiName = "mdi-chevron-double-up";
@@ -217,7 +211,7 @@ export default {
       }
       return mdiName;
     },
-    getStockColor (chg) {
+    getStockColor(chg) {
       let color = "";
       if (chg.indexOf("+") != -1) {
         color = "green";
@@ -229,34 +223,23 @@ export default {
       return color;
     },
     reloadStockData() {
-      let url = '/stock/getTestData';
-      if (!this.useTestData) {
-        url = `https://fcsapi.com/api-v2/stock/latest?access_key=${this.access_key}&symbol=${this.selectSymbolList.join()}`;
-        console.log(
-          "***********************  use realData "
-        );
+      const url = '/stock/getStockData'
+      let reloadParams = {
+        useRealData: this.useRealData,
+        selectSymbolList:this.selectSymbolList
       }
-      axios
-        .get(
-          url
-        )
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.msg == "Successfully") {
-            //因為會回傳墨西哥的資料  所以需要先filter
-            this.stockData = response.data.response.filter(
-              (stock) => stock.country == "united-states"
-            );
-          }
-        });
+      axios.post(url, reloadParams).then((response) => {
+        console.log(response.data);
+        if (response.status == 200) {
+          //因為會回傳墨西哥的資料  所以需要先filter
+          this.stockData = response.data;
+        }
+      });
     },
   },
-  //不知道為啥小post一直call不過去  先暫時用get
   mounted() {
-    this.reloadStockData();
   },
 };
-
 </script>
 
 <style lang="scss" scoped>
