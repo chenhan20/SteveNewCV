@@ -44,25 +44,26 @@ async function start() {
     }
     res.send(defaultStockData);
   });
-  // getTestData
+
+  // getStockData
   app.post('/stock/getStockData', async function (req, res) {
     const params = req.body;
     let stockData;
-    if (params.useRealData) {
-        const access_key = 'EW4ByaDKhCt5hVSjgIVtyc0C1NJTleIGpAnwIlHKLWyc2nFATj';
-        const stockDataRes = await axios.get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${params.selectSymbolList.join()}`)
-        .catch((err) => {
-           throw new Error('exception!' + err.message); 
-        });  
 
-        if (stockDataRes.data.msg == "Successfully") {
-          //因為會回傳墨西哥的資料  所以需要先filter
-          stockData = stockDataRes.data.response;
-        }
-    } else {
-      stockData = testData;
-    }
+      if (params.useRealData) {
+          const access_key = 'EW4ByaDKhCt5hVSjgIVtyc0C1NJTleIGpAnwIlHKLWyc2nFATj';
+          const stockDataRes = await axios.get(`https://fcsapi.com/api-v2/stock/latest?access_key=${access_key}&symbol=${params.selectSymbolList.join()}`)
+          .catch((err) => {
+            console.error('Error Msg: ' + err.message);
+          });  
+          if (stockDataRes.data.msg == "Successfully") {
+            stockData = stockDataRes.data.response;
+          }
+      } else {
+        stockData = testData;
+      }
 
+    //因為會回傳墨西哥的資料  所以需要先filter
     stockData = stockData.filter(
       (stock) => stock.country == "united-states"
     );

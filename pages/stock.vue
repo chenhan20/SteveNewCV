@@ -132,7 +132,7 @@ export default {
         { property: 'og:description', content: 'Steve Stock Portfolios detail' },
         { property: 'og:site_name', content: 'Stock Portfolios' },
         { property: 'og:locale', content: 'zh_TW' },
-        { hid: 'og:image', property: 'og:image', content: '/steveCvImage_02.jpg' },
+        { property: 'og:image', content: '/steveCvImage_02.jpg' },
       ]
     },
     stockData: [],
