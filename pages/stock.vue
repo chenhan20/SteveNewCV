@@ -124,6 +124,16 @@ export default {
   data: () => ({
     head: {
       title: "STOCK",
+    meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { 'http-equiv': 'X-UA-Compatible', content:'ie=edge' },
+        { property: 'og:title', content: 'steve Stock' },
+        { property: 'og:description', content: 'Steve Stock Portfolios detail' },
+        { property: 'og:site_name', content: 'Stock Portfolios' },
+        { property: 'og:locale', content: 'zh_TW' },
+        { hid: 'og:image', property: 'og:image', content: '/steveCvImage_02.jpg' },
+      ]
     },
     stockData: [],
     selectSymbolList: [],

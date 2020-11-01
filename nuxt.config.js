@@ -18,7 +18,6 @@ module.exports = {
       { property: 'og:description', content: 'Welcome to SteveChuang webSite' },
       { property: 'og:site_name', content: 'SteveChuang | web Site' },
       { property: 'og:locale', content: 'zh_TW' }
-
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
