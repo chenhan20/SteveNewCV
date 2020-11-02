@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <p class="text-sm-h3 text-h4 text-center">Steve Stock Portfolios</p>
-    <v-card dark class="pa-5 my-5 grey darken-2" elevation="2" outlined shaped>
+    <v-card dark class="pa-5 my-5" color="#253445" elevation="2" outlined shaped>
       <v-card-title>
         <v-icon left> mdi-wrench-outline </v-icon>
         <span class="title font-weight-light">Setting</span>
