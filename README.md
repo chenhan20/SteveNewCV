@@ -9,6 +9,9 @@
 </p>
 
 
+![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/stockGif.gif?raw=true)
+
+
 ## Build Setup
 
 ---
