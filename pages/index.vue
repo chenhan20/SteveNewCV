@@ -13,7 +13,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-card v-for="(project, i) in projectData"
+    <v-card dark v-for="(project, i) in projectData"
       :key="i"
       class="">
         <v-card-title>
