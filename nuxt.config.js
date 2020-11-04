@@ -1,9 +1,6 @@
 const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
-  googleAnalytics: {
-    id: 'G-4G4H9NKBPJ'
-  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -51,6 +48,9 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'G-4G4H9NKBPJ'
+    }]
   ],
   /*
   ** vuetify module configuration
