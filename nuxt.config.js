@@ -25,8 +25,6 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lobster&display=swap' }
-      { rel: 'javascript', href: 'https://www.googletagmanager.com/gtag/js?id=G-4G4H9NKBPJ' }
-      
     ]
   },
   /*
