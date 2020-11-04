@@ -49,7 +49,10 @@ module.exports = {
   */
   modules: [
     ['@nuxtjs/google-analytics', {
-      measurement-id: 'G-4G4H9NKBPJ'
+      id: 'G-4G4H9NKBPJ',
+      autoTracking: {
+        pageviewOnLoad: false 
+      },
     }]
   ],
   /*
