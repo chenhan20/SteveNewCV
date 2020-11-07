@@ -151,19 +151,19 @@ export default {
       {
         text: "股價",
         align: "left",
-        sortable: false,
+        sortable: true,
         value: "price",
       },
       {
         text: "漲跌",
         align: "left",
-        sortable: false,
+        sortable: true,
         value: "chg",
       },
       {
         text: "漲跌幅(%)",
         align: "left",
-        sortable: false,
+        sortable: true,
         value: "chg_percent",
       },
       {
