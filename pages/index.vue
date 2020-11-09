@@ -69,7 +69,7 @@ export default {
       if (response.status === 200) {
         this.projectData = response.data.projectData;
       }
-    });
+    }).catch(() => {});
   }
 };
 </script>

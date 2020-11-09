@@ -199,7 +199,7 @@ export default {
         this.selectSymbolList = response.data.symbolList;
         this.reloadStockData();
       }
-    });
+    }).catch(() => {});
     // `this` points to the vm instance
   },
   methods: {
@@ -244,7 +244,7 @@ export default {
           //因為會回傳墨西哥的資料  所以需要先filter
           this.stockData = response.data;
         }
-      });
+      }).catch(() => {});
     },
   },
   mounted() {

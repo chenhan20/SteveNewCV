@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid>
-    <h3 class="display-3 text-center text-uppercase">{{head.title}}</h3>
-    {{celebrityList}}
-  </v-container>
+    <v-responsive :aspect-ratio="16/9">
+      <h3 class="display-3 text-center text-uppercase">{{head.title}}</h3>
+      <v-card></v-card>
+    </v-responsive>
 </template>
 
 
