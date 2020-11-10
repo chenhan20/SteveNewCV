@@ -1,30 +1,32 @@
 <template>
-  <v-card max-width="450" class="mx-auto">
-    <v-toolbar color="cyan" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Steve ToDoList</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon @click="addToDo">
-        <v-icon>mdi-playlist-plus</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-list>
-      <v-list-item-group>
-        <v-list-item v-for="(toDo, i) in toDoList" :key="i">
-          <v-list-item-content>
-            <v-list-item-title v-text="toDo.text"></v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-checkbox color="deep-purple accent-4"
-             v-model="toDo.active"
-             :true-value="toDo.text"
-             :input-value="toDo.active">
-             </v-checkbox>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
+  <v-responsive :aspect-ratio="16/9">
+    <v-card max-width="450" class="mx-auto">
+      <v-toolbar color="cyan" dark>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-toolbar-title>Steve ToDoList</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon @click="addToDo">
+          <v-icon>mdi-playlist-plus</v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-list>
+        <v-list-item-group>
+          <v-list-item v-for="(toDo, i) in toDoList" :key="i">
+            <v-list-item-content>
+              <v-list-item-title v-text="toDo.text"></v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-checkbox color="deep-purple accent-4"
+              v-model="toDo.active"
+              :true-value="toDo.text"
+              :input-value="toDo.active">
+              </v-checkbox>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-card>
+  </v-responsive>
 </template>
 
 <script>
