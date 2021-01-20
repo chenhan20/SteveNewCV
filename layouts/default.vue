@@ -81,6 +81,11 @@ export default {
           to: '/stock'
         },
         {
+          icon: 'mdi-chart-line',
+          title: 'stockPortfolio',
+          to: '/stockPortfolio'
+        },
+        {
           icon: 'mdi-dice-1',
           title: 'Lotto',
           to: '/lotto'

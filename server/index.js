@@ -81,6 +81,16 @@ async function start() {
   });
 
 
+    // initStockData
+    app.get('/stock/getPortfolio', function (req, res) {
+      const portfolioData = {
+        symbolList: ['006208' ,'2454' ,'2337' ,'2303' ,'2330' ,'2308' ,'2377' ,'2382' ,'2884' ,'2886' ,'2892' ,'AAPL' ,'TSLA' ,'PLTR' ,'AMD' ,'MSFT' ,'NVDA' ,'ABNB' ,'APPS' ,'PLTK' ,'VTI']
+      }
+      res.send(portfolioData);
+    });
+  
+ 
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
