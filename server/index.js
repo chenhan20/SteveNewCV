@@ -97,12 +97,16 @@ async function start() {
       .catch((err) => {
         console.error('Error Msg: ' + err.message);
       });  
+      const fbxTickerRes = await axios.get(`https://fbx.freightos.com/api/ticker`)
+      .catch((err) => {
+        console.error('Error Msg: ' + err.message);
+      });  
       if (fbxRes.data.indexPoints.length>0) {
         fbxData = fbxRes.data;
       }
+      fbxData['ticker'] = fbxTickerRes.data
       res.send(fbxData);
     });
-  
  
 
   // Give nuxt middleware to express
