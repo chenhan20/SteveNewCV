@@ -9,10 +9,11 @@
             <div class="frFyey">
               <div class="">
                 <div class="code">{{fbxTicker.ticker}}</div>
-                <div class="lane">Global Container Index</div>
+                <div class="lane">{{getFbxTickerName(fbxTicker.ticker)}}</div>
+                <div class="lane">{{getFbxTickerName2(fbxTicker.ticker)}}</div>
               </div>
               <div class="graph">
-                  <div class="gvWRqt"></div>
+                  <div v-bind:class="getFbxTickerClassName(fbxTicker.ticker)"></div>
               </div>
               <div class="">
                   <div class="">{{parseFloat(fbxTicker.value).toFixed(2)}}</div>
@@ -52,6 +53,74 @@ export default {
     head: {
       title: "FBX DAILY PRICES",
     },
+    fbxTicketHardCode:{
+        'FBX':{
+          lane_1: 'Global Container Index',
+          lane_2: '',
+          imageClassName: 'gvWRqt'
+        },
+        'FBX01':{
+          lane_1: 'China/East Asia',
+          lane_2: 'North America West Coast',
+          imageClassName: 'kESNYy'
+        },
+        'FBX02':{
+          lane_1: 'North America West Coast ',
+          lane_2: 'China/East Asia',
+          imageClassName: 'dOuNZP'
+        },
+        'FBX03':{
+          lane_1: 'China/East Asia ',
+          lane_2: 'North America East Coast',
+          imageClassName: 'fCiQOa'
+        },
+        'FBX04':{
+          lane_1: 'North America East Coast ',
+          lane_2: 'China/East Asia',
+          imageClassName: 'gcYSfq'
+        },
+        'FBX11':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'dgODLO'
+        },
+        'FBX12':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'iQKRmn'
+        },
+        'FBX13':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'icERNP'
+        },
+        'FBX14':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'hnJQFB'
+        },
+        'FBX21':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'jUhwpc'
+        },
+        'FBX22':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'bvDJPL'
+        },
+        'FBX24':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'hmkyPu'
+        },
+        'FBX26':{
+          lane_1: 'China/East Asia',
+          lane_2: ' North America West Coast',
+          imageClassName: 'cLTcEG'
+        },
+        
+    },
     fbxList: [],
     fbxTickerList: [],
         tableHeaders: [
@@ -75,14 +144,42 @@ export default {
       .then((response) => {
           if (response.status === 200) {
             let fbxData = response.data.indexPoints;
+            let ticker = response.data.ticker;
             this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
-            this.fbxTickerList = response.data.ticker;
+            // for(let tick of ticker){
+            //   let ticketName = tick.ticker;
+            //   debugger
+            //   tick['lane'] = this.fbxTicketHardCode[ticketName];
+            // }
+            this.fbxTickerList = ticker;
         }
       })
       .catch(() => {});
     // `this` points to the vm instance
   },
-  methods: {},
+  methods: {
+    getFbxTickerName(name) {
+      let tickerName = "";
+      if(this.fbxTicketHardCode[name] !== undefined){
+          tickerName = this.fbxTicketHardCode[name].lane_1;
+      }
+      return tickerName;
+    },
+    getFbxTickerName2(name) {
+      let tickerName = "";
+      if(this.fbxTicketHardCode[name] !== undefined){
+          tickerName = this.fbxTicketHardCode[name].lane_2;
+      }
+      return tickerName;
+    },
+    getFbxTickerClassName(name) {
+      let tickerName = "";
+      if(this.fbxTicketHardCode[name] !== undefined){
+          tickerName = this.fbxTicketHardCode[name].imageClassName;
+      }
+      return tickerName;
+    }
+  },
   mounted() {},
 };
 </script>
@@ -117,6 +214,102 @@ body {
             .gvWRqt {
                 background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
                 background-position: 0px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .kESNYy {
+              background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+              background-position: -100px 0px;
+              background-size: cover;
+              width: 100px;
+              height: 67px;
+              margin-top: -5px;
+            }
+            .dOuNZP {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -200px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .fCiQOa {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -300px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .gcYSfq {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -400px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .dgODLO {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -500px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .iQKRmn {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -600px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .icERNP {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -700px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .hnJQFB {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -800px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .jUhwpc {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -900px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .bvDJPL {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -1000px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .hmkyPu {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -1100px 0px;
+                background-size: cover;
+                width: 100px;
+                height: 67px;
+                margin-top: -5px;
+            }
+            .cLTcEG {
+                background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
+                background-position: -1200px 0px;
                 background-size: cover;
                 width: 100px;
                 height: 67px;
