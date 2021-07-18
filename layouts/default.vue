@@ -86,6 +86,11 @@ export default {
           to: '/stockPortfolio'
         },
         {
+          icon: 'mdi-chart-line',
+          title: 'FBX',
+          to: '/fbx'
+        },
+        {
           icon: 'mdi-dice-1',
           title: 'Lotto',
           to: '/lotto'

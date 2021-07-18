@@ -90,6 +90,20 @@ async function start() {
     });
   
  
+    // getFBX
+    app.get('/stock/getFBX',async function (req, res) {
+      let fbxData ;
+      const fbxRes = await axios.get(`https://fbx.freightos.com/api/lane/FBX?isDaily=true`)
+      .catch((err) => {
+        console.error('Error Msg: ' + err.message);
+      });  
+      if (fbxRes.data.indexPoints.length>0) {
+        fbxData = fbxRes.data;
+      }
+      res.send(fbxData);
+    });
+  
+ 
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
