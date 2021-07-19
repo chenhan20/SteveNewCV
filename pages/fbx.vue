@@ -36,9 +36,11 @@
               :items="fbxList"
               :items-per-page="50"
               class="elevation-1"
+              :loading="myloadingvariable" 
+              loading-text="Loading... Please wait"
               dark
           >
-              <template> </template>
+            <template> </template>
           </v-data-table>
         </v-col>
       </v-row>
@@ -51,8 +53,9 @@ import axios from "axios";
 export default {
   data: () => ({
     head: {
-      title: "FBX DAILY PRICES",
+      title: "FBX PRICES",
     },
+    myloadingvariable: true,
     fbxTicketHardCode:{
         'FBX':{
           lane_1: 'Global Container Index',
@@ -147,6 +150,7 @@ export default {
             let ticker = response.data.ticker;
             this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
             this.fbxTickerList = ticker;
+            this.myloadingvariable = false;
         }
       })
       .catch(() => {});
