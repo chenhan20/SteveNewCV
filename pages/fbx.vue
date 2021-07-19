@@ -4,18 +4,18 @@
      class="fbxContainer">
       <div class="fbxTitle text-center text-uppercase">{{head.title}}</div>
       <v-row>
-        <v-col class="" offset-xl="2" xl="4">
-          <v-col offset-xl="4" v-for="(fbxTicker, i) in fbxTickerList" :key="i">
+        <v-col class="" offset-xl="2" xl="4" xs="12">
+          <v-col xl="9" offset-xl="3" v-for="(fbxTicker, i) in fbxTickerList" :key="i">
             <div class="frFyey">
-              <div class="">
+              <v-col xl="4" class="">
                 <div class="code">{{fbxTicker.ticker}}</div>
-                <div class="lane">{{getFbxTickerName(fbxTicker.ticker)}}</div>
+                <div class="lane">{{getFbxTickerName(fbxTicker.ticker)}} to</div>
                 <div class="lane">{{getFbxTickerName2(fbxTicker.ticker)}}</div>
-              </div>
-              <div class="graph">
+              </v-col>
+              <v-col xl="4" class="graph">
                   <div v-bind:class="getFbxTickerClassName(fbxTicker.ticker)"></div>
-              </div>
-              <div class="">
+              </v-col>
+              <v-col xl="4" class="text-center">
                   <div class="">{{parseFloat(fbxTicker.value).toFixed(2)}}</div>
                   <span class="">
                       <svg v-if="fbxTicker.change>0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 -4 10 14">
@@ -26,11 +26,11 @@
                       </svg>
                       {{parseFloat(fbxTicker.change).toFixed(2)}}%
                   </span>
-              </div>
+              </v-col>
             </div>
           </v-col>
         </v-col>
-        <v-col xl="2" xs="12">
+        <v-col xl="3" xs="12">
           <v-data-table
               :headers="tableHeaders"
               :items="fbxList"
@@ -81,42 +81,42 @@ export default {
         },
         'FBX11':{
           lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_2: 'North Europe',
           imageClassName: 'dgODLO'
         },
         'FBX12':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'North Europe',
+          lane_2: 'China/East Asia',
           imageClassName: 'iQKRmn'
         },
         'FBX13':{
           lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_2: 'Mediterranean',
           imageClassName: 'icERNP'
         },
         'FBX14':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'Mediterranean',
+          lane_2: 'China/East Asia',
           imageClassName: 'hnJQFB'
         },
         'FBX21':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'North America East Coast',
+          lane_2: 'North Europe',
           imageClassName: 'jUhwpc'
         },
         'FBX22':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'North Europe',
+          lane_2: 'North America East Coast',
           imageClassName: 'bvDJPL'
         },
         'FBX24':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'Europe',
+          lane_2: 'South America East Coast',
           imageClassName: 'hmkyPu'
         },
         'FBX26':{
-          lane_1: 'China/East Asia',
-          lane_2: ' North America West Coast',
+          lane_1: 'Europe ',
+          lane_2: ' South America West Coast',
           imageClassName: 'cLTcEG'
         },
         
@@ -146,11 +146,6 @@ export default {
             let fbxData = response.data.indexPoints;
             let ticker = response.data.ticker;
             this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
-            // for(let tick of ticker){
-            //   let ticketName = tick.ticker;
-            //   debugger
-            //   tick['lane'] = this.fbxTicketHardCode[ticketName];
-            // }
             this.fbxTickerList = ticker;
         }
       })
@@ -189,6 +184,8 @@ body {
     font-family: "Open Sans", sans-serif;
     .fbxContainer{
         background-color: rgb(24, 30, 57);
+        font-size: 13px;
+        font-weight: 700;
         .fbxTitle{
             font-size: 34px;
             font-weight: bold;
@@ -208,7 +205,6 @@ body {
             height: 80px;
             cursor: pointer;
             transition: all 250ms ease-out 0s;
-            width: 378px;
             color: white;
             text-decoration: none;
             .gvWRqt {
