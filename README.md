@@ -10,7 +10,7 @@
 
 
 ![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/stockGif.gif?raw=true)
-![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/fbxDemo_01?raw=true)
+![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/FbxDemo_01.jpg?raw=true)
 
 ## Build Setup
 
@@ -44,6 +44,9 @@ $ npm run generate
 * [fcsapi抓取美股資訊](https://fcsapi.com/)
 
 ---
+### FBX資訊
+
+* [fbx參考網站](https://fbx.freightos.com/)
 
 部屬到heroku要在setting --> Config Vars 新增以下參數
 
