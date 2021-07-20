@@ -10,7 +10,7 @@
 
 
 ![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/stockGif.gif?raw=true)
-![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/fbxDemo_01?raw=true)
+![Image of Yaktocat](https://github.com/chenhan20/SteveNewCV/blob/master/FbxDemo_01.jpg?raw=true)
 
 ## Build Setup
 
