@@ -3,6 +3,7 @@
      fluid
      class="fbxContainer">
       <div class="fbxTitle text-center text-uppercase">{{head.title}}</div>
+      <h3 class="white--text text-center ">Freightos Baltic Index</h3>
       <v-row>
         <v-col class="" offset-xl="2" xl="4" xs="12">
           <v-col xl="9" offset-xl="3" v-for="(fbxTicker, i) in fbxTickerList" :key="i">
@@ -188,7 +189,7 @@ body {
     font-family: "Open Sans", sans-serif;
     .fbxContainer{
         background-color: rgb(24, 30, 57);
-        font-size: 13px;
+        font-size: 0.7rem;
         font-weight: 700;
         .fbxTitle{
             font-size: 34px;
@@ -203,7 +204,7 @@ body {
             align-items: center;
             border-radius: 4px;
             box-sizing: border-box;
-            background: linear-gradient(to right, rgba(0, 147, 238, 0.41), rgba(39, 217, 116, 0.41));
+            background: linear-gradient(to right, rgba(0, 147, 238, 0.5), rgba(39, 217, 116, 0.5));
             padding: 10px;
             margin-bottom: 10px;
             height: 80px;
@@ -211,6 +212,9 @@ body {
             transition: all 250ms ease-out 0s;
             color: white;
             text-decoration: none;
+            &:hover {
+              background: rgb(29, 36, 64);
+            }
             .gvWRqt {
                 background-image: url(https://fbx.freightos.com/charts/mini/sprite.png);
                 background-position: 0px 0px;

@@ -44,6 +44,9 @@ $ npm run generate
 * [fcsapi抓取美股資訊](https://fcsapi.com/)
 
 ---
+### FBX資訊
+
+* [fbx參考網站](https://fbx.freightos.com/)
 
 部屬到heroku要在setting --> Config Vars 新增以下參數
 
