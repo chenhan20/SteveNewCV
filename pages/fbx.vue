@@ -4,19 +4,37 @@
      class="fbxContainer">
       <div class="fbxTitle text-center text-uppercase">{{head.title}}</div>
       <h3 class="white--text text-center ">Freightos Baltic Index</h3>
+      <v-col
+        cols="12"
+        offset-xl="4"
+        xl="4"
+        class="py-2 text-center"
+      >
+        <p>Mandatory</p>
+
+        <v-btn-toggle
+          v-model="toggle_one"
+          shaped
+          mandatory
+        >
+          <v-btn @click="reloadFbxData">reload
+            <v-icon>mdi-reload</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
       <v-row>
         <v-col class="" offset-xl="2" xl="4" xs="12">
           <v-col xl="9" offset-xl="3" v-for="(fbxTicker, i) in fbxTickerList" :key="i">
-            <div class="frFyey">
-              <v-col xl="4" class="">
+            <v-row class="frFyey">
+              <v-col cols="5" class="">
                 <div class="code">{{fbxTicker.ticker}}</div>
                 <div class="lane">{{getFbxTickerName(fbxTicker.ticker)}} to</div>
                 <div class="lane">{{getFbxTickerName2(fbxTicker.ticker)}}</div>
               </v-col>
-              <v-col xl="4" class="graph">
+              <v-col cols="4" class="graph">
                   <div v-bind:class="getFbxTickerClassName(fbxTicker.ticker)"></div>
               </v-col>
-              <v-col xl="4" class="text-center">
+              <v-col cols="3" class="text-center">
                   <div class="">{{parseFloat(fbxTicker.value).toFixed(2)}}</div>
                   <span class="">
                       <svg v-if="fbxTicker.change>0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 -4 10 14">
@@ -28,7 +46,7 @@
                       {{parseFloat(fbxTicker.change).toFixed(2)}}%
                   </span>
               </v-col>
-            </div>
+            </v-row>
           </v-col>
         </v-col>
         <v-col xl="3" xs="12">
@@ -143,18 +161,7 @@ export default {
     ]
   }),
   created: function () {
-    axios
-      .get(`/stock/getFBX`)
-      .then((response) => {
-          if (response.status === 200) {
-            let fbxData = response.data.indexPoints;
-            let ticker = response.data.ticker;
-            this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
-            this.fbxTickerList = ticker;
-            this.myloadingvariable = false;
-        }
-      })
-      .catch(() => {});
+      this.reloadFbxData();
     // `this` points to the vm instance
   },
   methods: {
@@ -178,7 +185,22 @@ export default {
           tickerName = this.fbxTicketHardCode[name].imageClassName;
       }
       return tickerName;
-    }
+    },
+    reloadFbxData() {
+      this.myloadingvariable = true;
+      axios
+        .get(`/stock/getFBX`)
+        .then((response) => {
+            if (response.status === 200) {
+              let fbxData = response.data.indexPoints;
+              let ticker = response.data.ticker;
+              this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
+              this.fbxTickerList = ticker;
+              this.myloadingvariable = false;
+          }
+        })
+        .catch(() => {});
+    },
   },
   mounted() {},
 };
@@ -189,7 +211,7 @@ body {
     font-family: "Open Sans", sans-serif;
     .fbxContainer{
         background-color: rgb(24, 30, 57);
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         font-weight: 700;
         .fbxTitle{
             font-size: 34px;
@@ -207,7 +229,7 @@ body {
             background: linear-gradient(to right, rgba(0, 147, 238, 0.5), rgba(39, 217, 116, 0.5));
             padding: 10px;
             margin-bottom: 10px;
-            height: 80px;
+            height: 120px;
             cursor: pointer;
             transition: all 250ms ease-out 0s;
             color: white;
