@@ -4,6 +4,24 @@
      class="fbxContainer">
       <div class="fbxTitle text-center text-uppercase">{{head.title}}</div>
       <h3 class="white--text text-center ">Freightos Baltic Index</h3>
+      <v-col
+        cols="12"
+        offset-xl="4"
+        xl="4"
+        class="py-2 text-center"
+      >
+        <p>Mandatory</p>
+
+        <v-btn-toggle
+          v-model="toggle_one"
+          shaped
+          mandatory
+        >
+          <v-btn @click="reloadFbxData">reload
+            <v-icon>mdi-reload</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
       <v-row>
         <v-col class="" offset-xl="2" xl="4" xs="12">
           <v-col xl="9" offset-xl="3" v-for="(fbxTicker, i) in fbxTickerList" :key="i">
@@ -143,18 +161,7 @@ export default {
     ]
   }),
   created: function () {
-    axios
-      .get(`/stock/getFBX`)
-      .then((response) => {
-          if (response.status === 200) {
-            let fbxData = response.data.indexPoints;
-            let ticker = response.data.ticker;
-            this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
-            this.fbxTickerList = ticker;
-            this.myloadingvariable = false;
-        }
-      })
-      .catch(() => {});
+      this.reloadFbxData();
     // `this` points to the vm instance
   },
   methods: {
@@ -178,7 +185,22 @@ export default {
           tickerName = this.fbxTicketHardCode[name].imageClassName;
       }
       return tickerName;
-    }
+    },
+    reloadFbxData() {
+      this.myloadingvariable = true;
+      axios
+        .get(`/stock/getFBX`)
+        .then((response) => {
+            if (response.status === 200) {
+              let fbxData = response.data.indexPoints;
+              let ticker = response.data.ticker;
+              this.fbxList = fbxData.sort((a, b) => (a.indexDate > b.indexDate) ? -1 : 1);
+              this.fbxTickerList = ticker;
+              this.myloadingvariable = false;
+          }
+        })
+        .catch(() => {});
+    },
   },
   mounted() {},
 };
