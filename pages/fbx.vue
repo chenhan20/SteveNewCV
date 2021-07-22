@@ -10,8 +10,6 @@
         xl="4"
         class="py-2 text-center"
       >
-        <p>Mandatory</p>
-
         <v-btn-toggle
           v-model="toggle_one"
           shaped
@@ -75,6 +73,7 @@ export default {
       title: "FBX PRICES",
     },
     myloadingvariable: true,
+    toggle_one: 0,
     fbxTicketHardCode:{
         'FBX':{
           lane_1: 'Global Container Index',
