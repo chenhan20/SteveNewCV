@@ -93,7 +93,7 @@ async function start() {
     // getFBX
     app.get('/stock/getFBX',async function (req, res) {
       let fbxData ;
-      const fbxRes = await axios.get(`https://fbx.freightos.com/api/lane/FBX?isDaily=true`)
+      const fbxRes = await axios.get(`https://fbx.freightos.com/api/lane/FBX?isDaily=false`)
       .catch((err) => {
         console.error('Error Msg: ' + err.message);
       });  
